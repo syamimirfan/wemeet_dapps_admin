@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/givetoken.css" />
+    <link rel="icon" href="../assets/wemeet-logo(icon).png">
+    <title>WEMEET | GIVE TOKEN</title>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 fs-4 fw-bold text-uppercase border-bottom"><img src="../assets/icon.png" class="w-75" alt="">
+            </div>
+            <div class="list-group list-group-flush my-3">
+                <a href="dashboard.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-home me-2"></i>Dashboard</a>
+
+                <a href="students.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                            class="fas fa-user me-2"></i>Student</a>
+
+                <a href="lecturers.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                                class="fas fa-user-tie me-2"></i>Lecturer</a>
+
+                <a href="givetoken.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                                    class="fas fa-hand-holding-usd me-2"></i>Give Token</a>
+                <a href="reward.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                                    class="fas fa-coins me-2"></i>Reward</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
+            </div>
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0 primary-text">Give Token</h2>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </nav>
+
+            <div class="container-fluid px-4">
+                <div class="row my-5 ">
+                    <h3 class="fs-4 mb-3 primary-text ">Student Attend</h3>
+                    <div class="col ">
+                        <table class="table bg-white rounded shadow-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col " width="50 ">#</th>
+                                    <th scope="col ">Matric Number</th>
+                                    <th scope="col ">Name</th>
+                                    <th scope="col ">Email</th>
+                                    <th scope="col ">Telephone Number</th>
+                                    <th scope="col ">Token Address</th>
+                                    <th scope="col ">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row ">1</th>
+                                    <td>AI200104</td>
+                                    <td>Muhamad Syamim Irfan Bin Ahmad Shokkri</td>
+                                    <td>syamimirfan59@gmail.com</td>
+                                    <td>0194078581</td>
+                                    <td>0xDe9D80fC9aCf342D4E0C30593aFBf6a55821f422</td>
+                                    <td>
+                                        <a href="givetokenstudent.html" class="fs-2 give-token"><i
+                                     class="fas fa-hand-holding-usd me-2"></i></a>
+                                        <a href="" class="fs-2 p-3 give-done"><i
+                                        class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row ">2</th>
+                                    <td>AI200104</td>
+                                    <td>Muhamad Syamim Irfan Bin Ahmad Shokkri</td>
+                                    <td>syamimirfan59@gmail.com</td>
+                                    <td>0194078581</td>
+                                    <td>0xDe9D80fC9aCf342D4E0C30593aFBf6a55821f422</td>
+                                    <td>
+                                        <a href="givetokenstudent.html" class="fs-2 give-token"><i
+                                        class="fas fa-hand-holding-usd me-2"></i></a>
+                                        <a href="" class="fs-2 p-3 give-done"><i
+                                            class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js "></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function() {
+            el.classList.toggle("toggled");
+        };
+    </script>
+</body>
+
+</html>

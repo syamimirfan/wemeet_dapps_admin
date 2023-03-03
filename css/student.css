@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Neuton&family=Poppins&display=swap');
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg-color: #2C227B;
+    --main-text-color: #FFFFFF;
+    --second-text-color: #FD3939;
+    --third-text-color: #000000;
+    --second-bg-color: #2C227B;
+}
+
+.primary-text {
+    color: var(--main-text-color);
+}
+
+.second-text {
+    color: var(--third-text-color);
+}
+
+.primary-bg {
+    background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+    background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+    border-radius: 100%;
+}
+
+#wrapper {
+    overflow-x: hidden;
+    background-color: #2C227B;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin 0.25s ease-out;
+    -moz-transition: margin 0.25s ease-out;
+    -o-transition: margin 0.25s ease-out;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+#menu-toggle {
+    cursor: pointer;
+}
+
+.list-group-item {
+    border: none;
+    padding: 20px 30px;
+}
+
+.list-group-item.active {
+    background-color: transparent;
+    color: var(--second-text-color);
+    font-weight: bold;
+    border: none;
+}
+
+.button-add {
+    position: relative;
+}
+
+.plus {
+    position: absolute;
+    transform: translate(50%, 15%);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.button-add-student {
+    background-color: #D86BFE;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.button-add-student:hover {
+    color: #FFFFFF;
+    background-color: #b04ed3;
+}
+
+.addlink {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.addlink:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.give-done {
+    color: #FD3939;
+}
+
+.give-done:hover {
+    color: #c62525;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -23rem;
+    }
+}
