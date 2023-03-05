@@ -20,7 +20,7 @@ class Admin {
             }).then(res => {
                 return res.json();
             }).then((res) => {
-                if (res['success'] && localStorage.getItem("password") !== null) {
+                if (res['success']) {
                     location.href = "../dashboard.html";
                     localStorage.setItem("password", this.password);
                 } else {

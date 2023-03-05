@@ -237,9 +237,7 @@
     </div>
     <!-- /#page-content-wrapper -->
 
-
-    <script src="../node_modules/pocketbase/dist/pocketbase.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
     <script src="../scripts/Student.js"></script>
     <script>
         var el = document.getElementById("wrapper");
@@ -250,6 +248,19 @@
         };
     </script>
     <script>
+        //firebase config and integration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrPBUIhdneG5WHMGeE9X79SJMbz8vf8ek",
+            authDomain: "wemeet-dapps.firebaseapp.com",
+            projectId: "wemeet-dapps",
+            storageBucket: "wemeet-dapps.appspot.com",
+            messagingSenderId: "589312895528",
+            appId: "1:589312895528:web:829e0702e97837533ae31d",
+            measurementId: "G-QGYCXXBYP3"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
         const addStudent = document.getElementById("addStudent");
         const matricNo = document.getElementById("matricNo");
         const studName = document.getElementById("studName");
@@ -259,7 +270,6 @@
         const program = document.getElementById("program");
         const faculty = document.getElementById("faculty");
         const studImage = document.getElementById("studImage");
-        const pb = new PocketBase('http://127.0.0.1:8090');
 
         const success_popup = document.getElementById("success");
         const error_popup = document.getElementById("error");
@@ -282,25 +292,31 @@
             let Program = program.value;
             let studentImage = studImage.value;
 
-            //pocketbase as a file storage 
+            //firebase as a file storage 
             if (studImage.value === "") {
                 let linkStudImage = "";
                 //inject inputs to the constructor
-                let student = new Student(matricNumber, identificationNumber, studentName, studentTelephoneNumber, studentEmail, linkStudImage, Faculty, Program, "");
+                let student = new Student(matricNumber, identificationNumber, studentName, studentTelephoneNumber, studentEmail, linkStudImage, "", Faculty, Program);
                 student.register();
             } else {
-                let studentImage = studImage.files[0];
+                let studImageItem = studImage.files[0]
+                let studImageName = studImageItem.name;
 
-                let formData = new FormData();
-                formData.set('image', studentImage);
+                let storageRef = firebase.storage().ref('students/' + studImageName);
+                let uploadTask = storageRef.put(studImageItem);
 
-                const createdStudImage = await pb.collection('studImage').create(formData);
+                uploadTask.on("state_changed", (snapshot) => {
+                    percentVal = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                }, (error) => {
+                    console.log("Error is ", error);
+                }, () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        //inject inputs to the constructor
+                        let student = new Student(matricNumber, identificationNumber, studentName, studentTelephoneNumber, studentEmail, url, "students/" + studImageName, Faculty, Program);
+                        student.register();
 
-                var linkStudImage = "http://127.0.0.1:8090/api/files/" + createdStudImage.collectionId + "/" + createdStudImage.id + "/" + createdStudImage.image;
-
-                //inject inputs to the constructor
-                let student = new Student(matricNumber, identificationNumber, studentName, studentTelephoneNumber, studentEmail, linkStudImage, Faculty, Program, createdStudImage);
-                student.register();
+                    })
+                });
             }
         });
     </script>

@@ -123,11 +123,10 @@
 }
 
 .popup-content {
-    /* display: block; */
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 4px 4px 70px 10px rgb(0 0 0/11%);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 4px 4px 70px 10px rgb(0 0 0/50%);
     border-radius: 25px;
 }
 
@@ -141,11 +140,11 @@
 }
 
 .title {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 24px;
     letter-spacing: 0.05em;
     text-align: center;
-    margin: auto;
+    margin: 20px auto;
 }
 
 #success .title {
@@ -153,6 +152,10 @@
 }
 
 #error .title {
+    color: #ff3636;
+}
+
+#duplicate .title {
     color: #ff3636;
 }
 
@@ -169,7 +172,7 @@
 .button {
     width: 50%;
     display: block;
-    margin: 20px auto;
+    margin: 120px auto;
     border-radius: 25px;
     padding: 10px;
     text-decoration: none;
@@ -183,6 +186,7 @@
 }
 
 #s_button:hover {
+    background: #269764;
     color: white;
 }
 
@@ -191,7 +195,12 @@
 }
 
 #e_button:hover {
+    background: #d11818;
     color: white;
+}
+
+#d_button {
+    background: #ff3636;
 }
 
 #d_button {
