@@ -33,6 +33,14 @@ class Admin {
     }
 
     logout() {
+        localStorage.removeItem("password");
+        // push a new state to the browser history
+        history.pushState(null, null, location.href);
 
+        // add an event listener to the window object to prevent going back to the previous page
+        window.onpopstate = function() {
+            history.go(1);
+        };
+        location.href = "../index.html";
     }
 }

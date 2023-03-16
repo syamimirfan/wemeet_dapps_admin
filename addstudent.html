@@ -33,7 +33,7 @@
                                     class="fas fa-hand-holding-usd me-2"></i>Give Token</a>
                 <a href="reward.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                     class="fas fa-coins me-2"></i>Reward</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent fw-bold"><i
+                <a href="#" class="list-group-item list-group-item-action bg-transparent fw-bold show-modal"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
@@ -236,6 +236,18 @@
         </div>
     </div>
     <!-- /#page-content-wrapper -->
+    <section class="popup-confirmation">
+
+        <div class="modal-box">
+            <h2>Logout</h2>
+            <h3>Are you sure you want to logout?</h3>
+
+            <div class="buttons">
+                <button class="close-btn">No</button>
+                <button class="okay-btn">Yes</button>
+            </div>
+        </div>
+    </section>
 
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
     <script src="../scripts/Student.js"></script>
@@ -246,6 +258,23 @@
         toggleButton.onclick = function() {
             el.classList.toggle("toggled");
         };
+        const section = document.querySelector(".popup-confirmation");
+        const showBtn = document.querySelector(".show-modal");
+        const closeBtn = document.querySelector(".close-btn");
+        const okayBtn = document.querySelector(".okay-btn");
+
+        showBtn.addEventListener("click", () => section.classList.add("active"));
+
+        closeBtn.addEventListener("click", () =>
+            section.classList.remove("active")
+        );
+
+        okayBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let admin = new Admin(localStorage.getItem("password"));
+            admin.logout();
+        });
     </script>
     <script>
         //firebase config and integration
@@ -320,7 +349,7 @@
             }
         });
     </script>
-
+    <script src="../scripts/Admin.js"></script>
 </body>
 
 </html>
