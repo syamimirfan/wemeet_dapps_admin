@@ -255,7 +255,7 @@
 .popup-confirmation.active .modal-box {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(200%, -300%) scale(1);
+    transform: translate(200%, -360%) scale(1);
 }
 
 .modal-box h2 {

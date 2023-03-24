@@ -1,8 +1,11 @@
 class Admin {
+
+    //the constructor
     constructor(password) {
         this.password = password;
     }
 
+    //admin login
     login() {
         if (this.password === "") {
             modal.classList.add('active')
@@ -32,6 +35,7 @@ class Admin {
         }
     }
 
+    //admin logout
     logout() {
         localStorage.removeItem("password");
         // push a new state to the browser history
@@ -42,5 +46,34 @@ class Admin {
             history.go(1);
         };
         location.href = "../index.html";
+    }
+
+    //delete all slot when semester begins
+    deleteSlot() {
+        fetch('http://localhost:5000/slot/deleteslot', {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+                'Content-Type': 'application/json;'
+            }
+        }).then((res) => {
+            return res.json();
+        }).then((data) => {
+            if (data.success && data.message === "All Slot Delete") {
+                success_popup.style.display = "block";
+                s_close.onclick = function() {
+                    success_popup.style.display = "none";
+                    location.reload();
+                }
+            } else {
+                error_popup.style.display = "block";
+                e_close.onclick = function() {
+                    error_popup.style.display = "none";
+                    location.reload();
+                }
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 }
