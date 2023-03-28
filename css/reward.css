@@ -81,135 +81,31 @@
     border: none;
 }
 
-.submit-btn {
-    font-size: 24px;
-    color: #FFFFFF;
-    border: none;
-    outline: none;
-    padding: 10px 40px;
-    background-color: #D86BFE;
-    border-radius: 10px;
+.button-add {
+    position: relative;
 }
 
-.submit-btn:hover {
-    background-color: #b24ad7;
+.plus {
+    position: absolute;
+    transform: translate(50%, 15%);
+    font-size: 30px;
+    font-weight: bold;
 }
 
-#success {
-    display: none;
-    position: fixed;
-    top: 10%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+.give-token {
+    color: #D86BFE;
 }
 
-#error {
-    display: none;
-    position: fixed;
-    top: 10%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+.give-token:hover {
+    color: #b04ed3;
 }
 
-#duplicate {
-    display: none;
-    position: fixed;
-    top: 10%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+.give-done {
+    color: #FD3939;
 }
 
-.popup-content {
-    /* display: block; */
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 4px 4px 70px 10px rgb(0 0 0/11%);
-    border-radius: 25px;
-}
-
-.imgbox {
-    text-align: center;
-}
-
-.img {
-    width: 112px;
-    margin-top: 40px;
-}
-
-.title {
-    font-weight: 500;
-    font-size: 24px;
-    letter-spacing: 0.05em;
-    text-align: center;
-    margin: auto;
-}
-
-#success .title {
-    color: #32ba7c;
-}
-
-#error .title {
-    color: #ff3636;
-}
-
-.para {
-    font-weight: 500;
-    width: 80%;
-    font-size: 18px;
-    line-height: 30px;
-    letter-spacing: 0.05em;
-    text-align: center;
-    margin: auto;
-}
-
-.button {
-    width: 50%;
-    display: block;
-    margin: 20px auto;
-    border-radius: 25px;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    letter-spacing: 0.05em;
-}
-
-#s_button {
-    background: #32ba7c;
-}
-
-#s_button:hover {
-    color: white;
-}
-
-#e_button {
-    background: #ff3636;
-}
-
-#e_button:hover {
-    color: white;
-}
-
-#d_button {
-    background: #ff3636;
-}
-
-#d_button:hover {
-    color: white;
-}
-
-#token {
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
-
-#uthm-token {
-    max-width: 50%;
+.give-done:hover {
+    color: #c62525;
 }
 
 .popup-confirmation {
@@ -255,7 +151,7 @@
 .popup-confirmation.active .modal-box {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(200%, -360%) scale(1);
+    transform: translate(200%, -300%) scale(1);
 }
 
 .modal-box h2 {
@@ -290,6 +186,12 @@
 
 .modal-box button:hover {
     background-color: #493cab;
+}
+
+.attendance-unavailable {
+    color: var(--second-text-color);
+    font-weight: bold;
+    font-size: 20px;
 }
 
 @media (min-width: 768px) {

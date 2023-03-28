@@ -1,5 +1,4 @@
 class Lecturer {
-
     //the constructor 
     constructor(staffNumber, lecturerName, identificationNumber, lecturerTelephoneNumber, lecturerEmail, lecturerImage, lecturerImageName, faculty, department, createdLecturerImage) {
         this.staffNumber = staffNumber;
@@ -181,6 +180,8 @@ class Lecturer {
                 }
 
                 document.getElementById("recentlecturer").innerHTML = recentLecturer;
+            }).catch((err) => {
+                console.log(err);
             })
     }
 
@@ -210,7 +211,7 @@ class Lecturer {
             }
         }).catch((err) => {
             console.log(err);
-        })
+        });
     }
 
 

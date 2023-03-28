@@ -29,10 +29,10 @@
                 <a href="lecturers.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                                 class="fas fa-user-tie me-2"></i>Lecturer</a>
 
-                <a href="givetoken.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
-                                    class="fas fa-hand-holding-usd me-2"></i>Give Token</a>
-                <a href="reward.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                    class="fas fa-coins me-2"></i>Reward</a>
+                <a href="reward.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                                    class="fas fa-hand-holding-usd me-2"></i>Reward</a>
+                <a href="tracktoken.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                                        class="fas fa-coins me-2"></i>Track Token</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent fw-bold show-modal"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
@@ -45,7 +45,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0 primary-text">Give Token</h2>
+                    <h2 class="fs-2 m-0 primary-text">Reward</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 text-center" id="token">
                                                     <img id="uthm-token" src="../assets/UTHM_Token.png" alt="UTHM_Token.png">
-                                                    <h1 class="fw-bold ">7000 UTHM</h1>
+                                                    <h1 class="fw-bold ">UTHM</h1>
                                                     <p class="fs-4">1 UTHM TOKEN = 1 RM</p>
                                                     <p class="fs-4">1 TOKEN = 1 APPOINTMENT</p>
                                                 </div>
@@ -78,10 +78,10 @@
                                             <hr class="my-p3">
                                             <div class="row align-items-center py-3">
                                                 <div class="col-md-3 ps-5">
-                                                    <h6 class="mb-0">Send To (Token Address)</h6>
+                                                    <h6 class="mb-0">Send To (Student Metamask Address)</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5">
-                                                    <input type="text" class="w-100 my-2 py-2" name="tokenAddress" placeholder="E.g 0xDe9D80fC9aCf342D4E0C30593aFBf6a55821f422" id="tokenAddress" />
+                                                    <input type="text" class="w-100 my-2 py-2" name="tokenAddress" id="studentMetamaskAddress" />
                                                 </div>
                                             </div>
 
@@ -91,7 +91,8 @@
                                                     <h6 class="mb-0 ">Amount</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input type="text" class="w-100 my-2 py-2" name="amount" placeholder="1" id="amount" />
+                                                    <p class="w-100 my-2 py-2">1 UTHM</p>
+
                                                 </div>
                                             </div>
 
@@ -119,12 +120,12 @@
             <div class="title">
                 <h3>Success!</h3>
             </div>
-            <p class="para">Token has been give to
-                <p class="para">AI200104</p>
-                successfully</p>
-            <form action="">
-                <a href="#" class="button" id="s_button">OKAY</a>
-            </form>
+            <p class="para">Token has been sent to
+                <p class="para fw-bold" id="successfulTokenSend"></p>
+                <p class="para">The transaction has been recorded in track token</p>
+                <form action="">
+                    <a href="#" class="s-button" id="s_button">OKAY</a>
+                </form>
         </div>
     </div>
     <div class="popup" id="error">
@@ -135,9 +136,23 @@
             <div class="title">
                 <h3>Sorry :(</h3>
             </div>
-            <p class="para">Please do not leave any fields blank!</p>
+            <p class="para">There is some error in transaction of token! If you already sent the token to student, you need to wait until the transaction is success before do another transaction. Check <a href="https://goerli.etherscan.io/">HERE</a></p>
             <form action="">
                 <a href="#" class="button" id="e_button">TRY AGAIN</a>
+            </form>
+        </div>
+    </div>
+    <div class="popup" id="error-2">
+        <div class="popup-content">
+            <div class="imgbox">
+                <img src="../assets/cancel.png" alt="" class="img">
+            </div>
+            <div class="title">
+                <h3>Sorry :(</h3>
+            </div>
+            <p class="para">There is some error to save the transaction hash in track token!</p>
+            <form action="">
+                <a href="#" class="button" id="e2_button">TRY AGAIN</a>
             </form>
         </div>
     </div>
@@ -155,7 +170,11 @@
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="../scripts/Student.js"></script>
+    <script src="../scripts/Attendance.js"></script>
+    <script src="../scripts/Connection.js"></script>
+    <script src="../scripts/Reward.js"></script>
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
@@ -163,10 +182,19 @@
         toggleButton.onclick = function() {
             el.classList.toggle("toggled");
         };
+
+        const success_popup = document.getElementById("success");
+        const error_popup = document.getElementById("error");
+        const error2_popup = document.getElementById("error-2");
+        const s_close = document.getElementById("s_button");
+        const e_close = document.getElementById("e_button");
+        const e2_close = document.getElementById("e2_button");
+
         const section = document.querySelector(".popup-confirmation");
         const showBtn = document.querySelector(".show-modal");
         const closeBtn = document.querySelector(".close-btn");
         const okayBtn = document.querySelector(".okay-btn");
+
 
         showBtn.addEventListener("click", () => section.classList.add("active"));
 
@@ -180,6 +208,30 @@
             let admin = new Admin(localStorage.getItem("password"));
             admin.logout();
         });
+
+        const giveToken = document.getElementById("givetoken");
+        const urlParams = new URLSearchParams(window.location.search);
+        const studTokenAddress = urlParams.get('tokenAddress');
+        const matricNo = urlParams.get('matricNo');
+        const attendanceId = urlParams.get('attendanceId');
+        document.getElementById("studentMetamaskAddress").value = studTokenAddress;
+        document.getElementById("successfulTokenSend").innerHTML = matricNo;
+
+        //global variable for web3 
+        //get .env params
+        const adminAccount = new Connection().ADMIN_ACCOUNT;
+        const tokenAddress = new Connection().TOKEN_ADDRESS;
+        const privateKey = new Connection().PRIVATE_KEY;
+        const infuraHTTPURL = new Connection().INFURA_GOERLI_ENDPOINT;
+        const abi = new Connection().CONTRACT_ABI;
+        const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
+
+        giveToken.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
+            reward.giveToken();
+        })
     </script>
     <script src="../scripts/Admin.js"></script>
 

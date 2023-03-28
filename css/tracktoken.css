@@ -107,16 +107,16 @@
 #error {
     display: none;
     position: fixed;
-    top: 23%;
+    top: 10%;
     left: 25%;
     width: 50%;
     height: 50%;
 }
 
-#error-2 {
+#duplicate {
     display: none;
     position: fixed;
-    top: 23%;
+    top: 10%;
     left: 25%;
     width: 50%;
     height: 50%;
@@ -126,7 +126,7 @@
     /* display: block; */
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 4px 4px 70px 10px rgb(0 0 0/11%);
     border-radius: 25px;
 }
@@ -178,18 +178,6 @@
     letter-spacing: 0.05em;
 }
 
-.s-button {
-    width: 50%;
-    display: block;
-    margin: 80px auto;
-    border-radius: 25px;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    letter-spacing: 0.05em;
-}
-
 #s_button {
     background: #32ba7c;
 }
@@ -206,11 +194,11 @@
     color: white;
 }
 
-#e2_button {
+#d_button {
     background: #ff3636;
 }
 
-#e2_button:hover {
+#d_button:hover {
     color: white;
 }
 
@@ -267,7 +255,7 @@
 .popup-confirmation.active .modal-box {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(200%, -360%) scale(1);
+    transform: translate(200%, -300%) scale(1);
 }
 
 .modal-box h2 {
@@ -302,6 +290,107 @@
 
 .modal-box button:hover {
     background-color: #493cab;
+}
+
+.transaction-unavailable {
+    color: var(--second-text-color);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.give-done {
+    border: none;
+    background-color: white;
+    color: #FD3939;
+}
+
+.give-done:hover {
+    color: #c62525;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cancelbtn,
+.deletebtn {
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 35px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 80px;
+    width: 20%;
+}
+
+.cancelbtn {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.cancelbtn:hover {
+    background-color: rgb(0, 0, 0, 0.75);
+}
+
+.deletebtn {
+    background-color: #f44336;
+}
+
+.deletebtn:hover {
+    background-color: #d1382d;
+}
+
+.container {
+    padding: 16px;
+    text-align: center;
+    background-color: lightgray;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto 15% auto;
+    width: 50%;
+    border: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.p-delete {
+    margin-top: 50px;
 }
 
 @media (min-width: 768px) {

@@ -182,6 +182,8 @@ class Student {
                     `;
                 }
                 document.getElementById("recentstudent").innerHTML = recentStudent;
+            }).catch((err) => {
+                console.log(err);
             });
     }
 
