@@ -34,7 +34,9 @@ class Reward {
 
         const data = tokenContract.methods.transfer(this.studentMetamaskAccount, value).encodeABI();
 
-        const gasPrice = this.web3.utils.toHex(this.web3.utils.toWei('12', 'gwei'));
+        //higher gas price
+        //higher fees
+        const gasPrice = this.web3.utils.toHex(this.web3.utils.toWei('8', 'gwei'));
 
         //prepare transaction. fields - to, value, gasPrice, gasLimit, nonce
         const transaction = {
@@ -83,7 +85,7 @@ class Reward {
                 success_popup.style.display = "block";
                 s_close.onclick = function() {
                     success_popup.style.display = "none";
-                    new Reward().deleteAttendance();
+                    new Reward().updateStatusReward();
                     location.href = "reward.html";
                 }
             } else {
@@ -99,19 +101,19 @@ class Reward {
         })
     }
 
-    //delete attend attendance 
-    deleteAttendance() {
-        fetch('http://localhost:5000/attendance/deleteattendance/' + attendanceId, {
-            method: "DELETE",
+    //update statusReward attendance to send 
+    updateStatusReward() {
+        fetch('http://localhost:5000/attendance/statusreward/' + attendanceId, {
+            method: "PATCH",
             mode: "cors",
-            body: {
+            headers: {
                 'Content-type': 'application/json;'
-            }
+            },
         }).then((res) => {
             return res.json();
         }).catch((err) => {
             console.log(err);
-        })
+        });
     }
 
     //get total UTHM token in the bank

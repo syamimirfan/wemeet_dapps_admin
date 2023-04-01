@@ -194,6 +194,12 @@
     font-size: 20px;
 }
 
+.token-sent {
+    color: #1c9f1c;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 @media (min-width: 768px) {
     #sidebar-wrapper {
         margin-left: 0;

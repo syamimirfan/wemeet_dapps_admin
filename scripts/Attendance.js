@@ -5,23 +5,39 @@ class Attendance {
             .then((res) => {
                 return res.json();
             }).then((data) => {
+                console.log(data);
                 let attendAttendance = "";
 
                 if (data.success && data.attendance && data.attendance.length > 0) {
                     data.attendance.map((item) => {
-                        attendAttendance += `
-                        <tr>
-                        <td>${item['matricNo']}</td>
-                        <td>${item['studName']}</td>
-                        <td>${item['studEmail']}</td>
-                        <td>${item['studTelephoneNo']}</td>
-                        <td>${item['tokenAddress']}</td>
-                        <td>
-                            <a href="givetokenstudent.html?tokenAddress=${item['tokenAddress']}&matricNo=${item['matricNo']}&attendanceId=${item['attendanceId']}" class="fs-2 give-token" ><i
-                         class="fas fa-hand-holding-usd me-2"></i></a>
-                        </td>
-                         </tr>
-                        `;
+                        if (item["statusReward"] === "Not Send") {
+                            attendAttendance += `
+                            <tr>
+                            <td>${item['matricNo']}</td>
+                            <td>${item['studName']}</td>
+                            <td>${item['studEmail']}</td>
+                            <td>${item['studTelephoneNo']}</td>
+                            <td>${item['tokenAddress']}</td>
+                            <td>
+                                <a href="givetokenstudent.html?tokenAddress=${item['tokenAddress']}&matricNo=${item['matricNo']}&attendanceId=${item['attendanceId']}" class="fs-2 give-token" ><i
+                             class="fas fa-hand-holding-usd me-2"></i></a>
+                            </td>
+                             </tr>
+                            `;
+                        } else if (item['statusReward'] === "Send") {
+                            attendAttendance += `
+                            <tr>
+                            <td>${item['matricNo']}</td>
+                            <td>${item['studName']}</td>
+                            <td>${item['studEmail']}</td>
+                            <td>${item['studTelephoneNo']}</td>
+                            <td>${item['tokenAddress']}</td>
+                            <td>
+                                <p class="token-sent">Token Sent!</p>
+                            </td>
+                             </tr>
+                            `;
+                        }
                     });
                 } else {
                     attendAttendance += `
