@@ -36,14 +36,15 @@ class Reward {
 
         //higher gas price
         //higher fees
-        const gasPrice = this.web3.utils.toHex(this.web3.utils.toWei('8', 'gwei'));
+        //20 gwei is okay
+        const gasPrice = this.web3.utils.toHex(this.web3.utils.toWei('6', 'gwei'));
 
         //prepare transaction. fields - to, value, gasPrice, gasLimit, nonce
         const transaction = {
             'to': this.tokenAddress,
             'value': "0x00", //used only for eth transfer else 0
-            'gasLimit': 6721975, //web3.utils.toHex(2100000), //changed after EIP-1559 upgrade 6721975
-            'gasPrice': gasPrice, //changed after EIP-1559 upgrade 20000000000
+            'gasLimit': 6721975, //changed after EIP-1559 upgrade 6721975
+            'gasPrice': gasPrice, //changed after EIP-1559 upgrade 20000000000 (20 gwei)
             'nonce': nonce,
             'data': data //transaction data
         }
@@ -123,11 +124,8 @@ class Reward {
 
         const tokenContract = new web3.eth.Contract(tokenContractABI, addressToken);
 
-        tokenContract.methods.balanceOf(accountAdmin).call().then(function(balance) {
-            const numStr = balance.toString();
-            const nonZeroStr = numStr.replace(/0+/g, '');
-            const nonZeroNum = parseInt(nonZeroStr);
-            document.getElementById("total-token").innerHTML = nonZeroNum;
-        });
+        const balanceWei = await tokenContract.methods.balanceOf(accountAdmin).call();
+        const balance = web3.utils.fromWei(balanceWei, "ether");
+        document.getElementById("total-token").innerHTML = balance;
     }
 }
