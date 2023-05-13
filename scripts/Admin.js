@@ -11,7 +11,7 @@ class Admin {
             modal.classList.add('active')
         } else {
 
-            fetch('http://localhost:5000/admin/login', {
+            fetch(new Utils().baseURL + '/admin/login', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ class Admin {
 
     //delete all slot when semester begins
     deleteSlot() {
-        fetch('http://localhost:5000/slot/deleteslot', {
+        fetch(new Utils().baseURL + '/slot/deleteslot', {
             method: "DELETE",
             mode: "cors",
             headers: {

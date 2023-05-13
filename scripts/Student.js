@@ -18,7 +18,7 @@ class Student {
             error_popup.style.display = "block";
 
         } else {
-            fetch('http://localhost:5000/student/addstudent', {
+            fetch(new Utils().baseURL + '/student/addstudent', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ class Student {
                         duplicate_popup.style.display = "none";
                         location.reload();
                     }
-                    fetch('http://localhost:5000/student/getimage/' + this.matricNumber, {
+                    fetch(new Utils().baseURL + '/student/getimage/' + this.matricNumber, {
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -61,7 +61,7 @@ class Student {
                         return res.json()
                     }).then((data) => {
                         if (data.studImageFirebase === this.studImageName) {
-                            fetch('http://localhost:5000/student/updateimage/' + this.matricNumber, {
+                            fetch(new Utils().baseURL + '/student/updateimage/' + this.matricNumber, {
                                 method: "PATCH",
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ class Student {
 
     //get total student
     getTotalStudent() {
-        fetch('http://localhost:5000/student/totalstudent')
+        fetch(new Utils().baseURL + '/student/totalstudent')
             .then((res) => {
                 return res.json();
             }).then((data) => {
@@ -132,7 +132,7 @@ class Student {
 
     //get recent student
     getRecentStudents() {
-        fetch('http://localhost:5000/student/recentstudent')
+        fetch(new Utils().baseURL + '/student/recentstudent')
             .then((res) => {
                 return res.json();
             }).then((data) => {
@@ -197,7 +197,7 @@ class Student {
             console.log(error);
         });
 
-        fetch('http://localhost:5000/student/deletestudent/' + matricNo, {
+        fetch(new Utils().baseURL + '/student/deletestudent/' + matricNo, {
             method: "DELETE",
             mode: "cors",
             body: {

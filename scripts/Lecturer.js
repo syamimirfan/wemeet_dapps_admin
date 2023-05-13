@@ -18,7 +18,7 @@ class Lecturer {
         if (this.staffNumber === "" || this.lecturerName === "" || this.identificationNumber === "" || this.lecturerTelephoneNumber === "" || this.lecturerEmail === "" || this.lecturerImage === "" || this.lecturerImageName === "" || this.faculty === "" || this.department === "" || this.createdLecturerImage === "") {
             error_popup.style.display = "block";
         } else {
-            fetch('http://localhost:5000/lecturer/addlecturer', {
+            fetch(new Utils().baseURL + '/lecturer/addlecturer', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ class Lecturer {
                         duplicate_popup.style.display = "none";
                         location.reload();
                     }
-                    fetch('http://localhost:5000/lecturer/getimage/' + this.staffNumber, {
+                    fetch(new Utils().baseURL + '/lecturer/getimage/' + this.staffNumber, {
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -60,7 +60,7 @@ class Lecturer {
                         return res.json()
                     }).then((data) => {
                         if (data.lecturerImageFirebase === this.lecturerImageName) {
-                            fetch('http://localhost:5000/lecturer/updateimage/' + this.staffNumber, {
+                            fetch(new Utils().baseURL + '/lecturer/updateimage/' + this.staffNumber, {
                                 method: "PATCH",
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ class Lecturer {
 
     //get total lecturer
     getTotalLecturer() {
-        fetch('http://localhost:5000/lecturer/totallecturer')
+        fetch(new Utils().baseURL + '/lecturer/totallecturer')
             .then((res) => {
                 return res.json();
             }).then((data) => {
@@ -130,7 +130,7 @@ class Lecturer {
 
     //get recent lecturer
     getRecentLecturers() {
-        fetch('http://localhost:5000/lecturer/recentlecturer')
+        fetch(new Utils().baseURL + '/lecturer/recentlecturer')
             .then((res) => {
                 return res.json();
             }).then((data) => {
@@ -195,7 +195,7 @@ class Lecturer {
             console.log(error);
         });
 
-        fetch('http://localhost:5000/lecturer/deletelecturer/' + staffNo, {
+        fetch(new Utils().baseURL + '/lecturer/deletelecturer/' + staffNo, {
             method: "DELETE",
             mode: "cors",
             body: {

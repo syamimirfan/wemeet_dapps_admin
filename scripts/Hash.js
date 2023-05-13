@@ -1,7 +1,7 @@
 class Hash {
     //get tracking hash
     getTrackingHash() {
-        fetch('http://localhost:5000/hash/gettransaction')
+        fetch(new Utils().baseURL + '/hash/gettransaction')
             .then((res) => {
                 return res.json();
             }).then((data) => {
@@ -55,7 +55,7 @@ class Hash {
 
     //delete tracking hash
     deleteTrackingHash(hashId) {
-        fetch('http://localhost:5000/hash/deletetransaction/' + hashId, {
+        fetch(new Utils().baseURL + '/hash/deletetransaction/' + hashId, {
             method: "DELETE",
             mode: "cors",
             body: {

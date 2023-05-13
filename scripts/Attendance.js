@@ -1,11 +1,10 @@
 class Attendance {
     //get attendance for student that attend 
     getAttendAttendance() {
-        fetch('http://localhost:5000/attendance/givetoken')
+        fetch(new Utils().baseURL + '/attendance/givetoken')
             .then((res) => {
                 return res.json();
             }).then((data) => {
-                console.log(data);
                 let attendAttendance = "";
 
                 if (data.success && data.attendance && data.attendance.length > 0) {

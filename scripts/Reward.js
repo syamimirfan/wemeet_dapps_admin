@@ -69,7 +69,7 @@ class Reward {
     //save the transaction hash to save in track order
     //admin can track the transaction by this hash
     transactionHash(hash) {
-        fetch('http://localhost:5000/hash/transaction', {
+        fetch(new Utils().baseURL + '/hash/transaction', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ class Reward {
 
     //update statusReward attendance to send 
     updateStatusReward() {
-        fetch('http://localhost:5000/attendance/statusreward/' + attendanceId, {
+        fetch(new Utils().baseURL + '/attendance/statusreward/' + attendanceId, {
             method: "PATCH",
             mode: "cors",
             headers: {
