@@ -353,7 +353,18 @@
 .stud-unavailable {
     color: var(--second-text-color);
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.no-data-student {
+    background-color: white;
+    padding: 5%;
+}
+
+.picture {
+    padding: 5px;
+    width: 80px;
 }
 
 @media (min-width: 768px) {

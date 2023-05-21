@@ -139,14 +139,45 @@ class Student {
                 let recentStudent = "";
 
                 if (data.success && data.student && data.student.length > 0) {
+                    recentStudent += `
+                     <table class="table bg-white rounded shadow-sm">
+                     <thead>
+                         <tr>
+                         <th scope="col ">Student Picture</th>
+                         <th scope="col ">Matric Number</th>
+                         <th scope="col ">Name</th>
+                         <th scope="col ">Email</th>
+                         <th scope="col ">Telephone Number</th>
+                         <th scope="col ">Program</th>
+                         <th scope="col ">Created Date</th>
+                         <th scope="col ">Action</th>
+                         </tr>
+                     </thead>
+                     <tbody>  
+                     `;
                     data.student.map((item) => {
-                        recentStudent += `
+                                  // Parse the input string as a Date object
+                const dateObject = new Date(item['createdDate']);
+
+                // Extract the desired date and time components from the Date object
+                const year = dateObject.getFullYear();
+                const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+                const day = dateObject.getDate().toString().padStart(2, "0");
+                const hours = dateObject.getHours().toString().padStart(2, "0");
+                const minutes = dateObject.getMinutes().toString().padStart(2, "0");
+                const seconds = dateObject.getSeconds().toString().padStart(2, "0");
+
+                // Create the formatted date and time string
+                const formattedDateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                        recentStudent += `        
                     <tr>
+                            <td><img class="picture" src="${item['studImage']}" alt=""></td>
                             <td>${item['matricNo']}</td>
                             <td>${item['studName']}</td>
                             <td>${item['studEmail']}</td>
                             <td>${item['studTelephoneNo']}</td>
                             <td>${item['program']}</td>
+                            <td>${formattedDateString}</td>
                             <td>
                             <button class="fs-2 p-2 give-done" onclick="document.getElementById('id${item['matricNo']}').style.display='block'"> 
                              <i class="fas fa-trash"></i>
@@ -165,20 +196,19 @@ class Student {
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div> 
+              
                     `;
                     });
+                    recentStudent += `
+                    </tbody>
+                    </table>
+                    `;
                 } else {
                     recentStudent += `
-              <tr>
-              <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-                    <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-                    <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-                    <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-                    <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-                    <td class="stud-unavailable">NO STUDENT AVAILABLE</td>
-              </tr>
-
+                        <div class="no-data-student rounded">
+                            <h1 class="stud-unavailable"> NO STUDENTS AVAILABLE </h1>
+                        </dv>
                     `;
                 }
                 document.getElementById("recentstudent").innerHTML = recentStudent;
@@ -211,6 +241,75 @@ class Student {
                 success_popup.style.display = "none";
                 location.reload();
             }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    getDashboardStudent() {
+        fetch(new Utils().baseURL + '/student/dashboardstudent')
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            let dashboardStudent = "";
+
+            if(data.success && data.student && data.student.length > 0) {
+             
+             dashboardStudent += `
+             <table class="table bg-white rounded shadow-sm">
+             <thead>
+                 <tr>
+                     <th scope="col ">Student Picture</th>
+                     <th scope="col ">Matric Number</th>
+                     <th scope="col ">Name</th>
+                     <th scope="col ">Email</th>
+                     <th scope="col ">Telephone Number</th>
+                     <th scope="col ">Program</th>
+                     <th scope="col ">Created Date</th>
+                 </tr>
+             </thead>
+             <tbody >
+             `;
+
+             data.student.map((item) => {
+                // Parse the input string as a Date object
+                const dateObject = new Date(item['createdDate']);
+
+                // Extract the desired date and time components from the Date object
+                const year = dateObject.getFullYear();
+                const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+                const day = dateObject.getDate().toString().padStart(2, "0");
+                const hours = dateObject.getHours().toString().padStart(2, "0");
+                const minutes = dateObject.getMinutes().toString().padStart(2, "0");
+                const seconds = dateObject.getSeconds().toString().padStart(2, "0");
+
+                // Create the formatted date and time string
+                const formattedDateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+                dashboardStudent += `
+                <tr>
+                <td><img class="picture" src="${item['studImage']}" alt=""></td>
+                <td>${item['matricNo']}</td>
+                <td>${item['studName']}</td>
+                <td>${item['studEmail']}</td>
+                <td>${item['studTelephoneNo']}</td>
+                <td>${item['program']}</td>
+                <td>${formattedDateString}</td>
+                </tr>
+                `;
+             });
+              dashboardStudent += `
+                 </tbody>
+              </table>
+              `;
+            }else {
+                dashboardStudent += `
+                <div class="no-data-dashboard rounded">
+                    <h1 class="dashboard-unavailable"> NO STUDENTS AVAILABLE </h1>
+                </dv>
+            `;
+            }
+            document.getElementById("dashboardstudent").innerHTML = dashboardStudent;
         }).catch((err) => {
             console.log(err);
         })

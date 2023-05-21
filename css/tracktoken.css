@@ -393,6 +393,19 @@ hr {
     margin-top: 50px;
 }
 
+.hash-unavailable {
+    color: var(--second-text-color);
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.no-data-hash {
+    background-color: white;
+    padding: 10%;
+}
+
+
 @media (min-width: 768px) {
     #sidebar-wrapper {
         margin-left: 0;

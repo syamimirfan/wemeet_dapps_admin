@@ -52,27 +52,25 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+        </nav>
 
-            </nav>
+            <div class="col-md-12 d-flex justify-content-around align-items-center">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3><strong class="fs-3">Manual to Track/Check UTHM Token</strong></h3>
+                        <p class="fs-5">1. Open <a href=" https://sepolia.etherscan.io/" target="_blank">Sepolia Etherscan</a> (Make sure it's Sepolia)</p>
+                        <p class="fs-5">2. Copy tracking hash or wallet address to check the token</p>
+                        <p class="fs-5">3. Paste in the search bar and hit enter (You can also filter the type that you want)</p>
+                    </div>
+                  
+                </div>
+            </div>
 
             <div class="container-fluid px-4">
                 <div class="row my-5 ">
                     <h3 class="fs-4 mb-3 primary-text ">Transaction Hash</h3>
-                    <div class="col ">
-                        <table class="table bg-white rounded shadow-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col ">Matric Number</th>
-                                    <th scope="col ">Name</th>
-                                    <th scope="col ">Telephone No</th>
-                                    <th scope="col ">Tracking Hash</th>
-                                    <th scope="col ">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="hash">
+                    <div class="col " id="hash">
                                 <!-- FETCH API getTrackingHash()-->
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

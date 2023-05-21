@@ -8,8 +8,22 @@ class Hash {
                 let trackingHash = "";
 
                 if (data.success && data.hash && data.hash.length > 0) {
+                    trackingHash += `
+                    <table class="table bg-white rounded shadow-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col ">Matric Number</th>
+                            <th scope="col ">Name</th>
+                            <th scope="col ">Telephone No</th>
+                            <th scope="col ">Tracking Hash</th>
+                            <th scope="col ">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    `;
                     data.hash.map((item) => {
-                        trackingHash += `
+                        
+                        trackingHash += `    
                 <tr>
                     <td>${item['matricNo']}</td>
                     <td>${item['studName']}</td>
@@ -34,17 +48,18 @@ class Hash {
                     </div>
                 </div>
             </div>  
+        
                     `;
                     });
+                    trackingHash += `
+                      </tbody>
+                    </table>
+                    `;
                 } else {
                     trackingHash += `
-                <tr>
-                <td class="transaction-unavailable">NO TRANSACTION</td>
-                <td class="transaction-unavailable">NO TRANSACTION</td>
-                <td class="transaction-unavailable">NO TRANSACTION</td>
-                <td class="transaction-unavailable">NO TRANSACTION</td>
-                <td class="transaction-unavailable">NO TRANSACTION</td>
-                </tr>
+                    <div class="no-data-hash rounded">
+                         <h1 class="hash-unavailable"> NO HASH AVAILABLE </h1>
+                    </div>
                 `;
                 }
                 document.getElementById("hash").innerHTML = trackingHash;

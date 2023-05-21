@@ -8,6 +8,20 @@ class Attendance {
                 let attendAttendance = "";
 
                 if (data.success && data.attendance && data.attendance.length > 0) {
+                    attendAttendance += `
+                    <table class="table bg-white rounded shadow-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col ">Matric Number</th>
+                            <th scope="col ">Name</th>
+                            <th scope="col ">Email</th>
+                            <th scope="col ">Telephone Number</th>
+                            <th scope="col ">Token Address</th>
+                            <th scope="col ">Action</th>
+                        </tr>
+                    </thead>   
+                    <tbody> 
+                    `;
                     data.attendance.map((item) => {
                         if (item["statusReward"] === "Not Send") {
                             attendAttendance += `
@@ -35,19 +49,19 @@ class Attendance {
                                 <p class="token-sent">Token Sent!</p>
                             </td>
                              </tr>
+                   
                             `;
                         }
                     });
+                    attendAttendance += `
+                    </tbody>
+                    </table>
+                    `;
                 } else {
                     attendAttendance += `
-                    <tr>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    <td class="attendance-unavailable">NO ATTENDANCE</td>
-                    </tr>
+                    <div class="no-data-attendance rounded">
+                       <h1 class="attendance-unavailable"> NO ATTENDANCE AVAILABLE</h1>
+                    </div>
                     `;
                 }
                 document.getElementById("attendance").innerHTML = attendAttendance;

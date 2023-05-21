@@ -135,16 +135,46 @@ class Lecturer {
                 return res.json();
             }).then((data) => {
                 let recentLecturer = "";
-
                 if (data.success && data.lecturer && data.lecturer.length > 0) {
+                    recentLecturer += `
+                    <table class="table bg-white rounded shadow-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col ">Lecturer Picture</th>
+                        <th scope="col ">Staff Number</th>
+                        <th scope="col ">Name</th>
+                        <th scope="col ">Email</th>
+                        <th scope="col ">Telephone Number</th>
+                        <th scope="col ">Faculty</th>
+                        <th scope="col ">Created Date</th>
+                        <th scope="col ">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    `;
                     data.lecturer.map((item) => {
+                    // Parse the input string as a Date object
+                    const dateObject = new Date(item['createdDate']);
+
+                    // Extract the desired date and time components from the Date object
+                    const year = dateObject.getFullYear();
+                    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+                    const day = dateObject.getDate().toString().padStart(2, "0");
+                    const hours = dateObject.getHours().toString().padStart(2, "0");
+                    const minutes = dateObject.getMinutes().toString().padStart(2, "0");
+                    const seconds = dateObject.getSeconds().toString().padStart(2, "0");
+
+                    // Create the formatted date and time string
+                    const formattedDateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
                         recentLecturer += `
                     <tr>
+                        <td><img class="picture" src="${item['lecturerImage']}" alt=""></td>
                         <td>${item['staffNo']}</td>
                         <td>${item['lecturerName']}</td>
                         <td>${item['lecturerEmail']}</td>
                         <td>${item['lecturerTelephoneNo']}</td>
                         <td>${item['faculty']}</td>
+                        <td>${formattedDateString}</td>
                         <td>
                         <button class="fs-2 p-2 give-done" onclick="document.getElementById('id${item['staffNo']}').style.display='block'"> 
                         <i class="fas fa-trash"></i>
@@ -164,19 +194,20 @@ class Lecturer {
                         </div>
                     </div>
                 </div>  
+    
                     `;
                     });
+                    recentLecturer += `
+                     </tbody>
+                    </table>
+                  `;
                 } else {
                     recentLecturer += `
-                    <tr>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                          <td class="lect-unavailable">NO LECTURER AVAILABLE</td>
-                    </tr>
+                    <div class="no-data-lecturer rounded">
+                    <h1 class="lect-unavailable"> NO LECTURERS AVAILABLE </h1>
+                        </div>
                     `;
+                    
                 }
 
                 document.getElementById("recentlecturer").innerHTML = recentLecturer;
@@ -214,5 +245,71 @@ class Lecturer {
         });
     }
 
+    getDashboardLecturer() {
+        fetch(new Utils().baseURL + '/lecturer/dashboardlecturer')
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            let dashboardLecturer = "";
+
+            if(data.success && data.lecturer && data.lecturer.length > 0) {
+                dashboardLecturer += `
+                <table class="table bg-white rounded shadow-sm">
+                <thead>
+                    <tr>
+                        <th scope="col ">Lecturer Picture</th>
+                        <th scope="col ">Staff Number</th>
+                        <th scope="col ">Name</th>
+                        <th scope="col ">Email</th>
+                        <th scope="col ">Telephone Number</th>
+                        <th scope="col ">Faculty</th>
+                        <th scope="col ">Created Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                `;
+
+                data.lecturer.map((item) => {
+                    // Parse the input string as a Date object
+                    const dateObject = new Date(item['createdDate']);
+
+                    // Extract the desired date and time components from the Date object
+                    const year = dateObject.getFullYear();
+                    const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+                    const day = dateObject.getDate().toString().padStart(2, "0");
+                    const hours = dateObject.getHours().toString().padStart(2, "0");
+                    const minutes = dateObject.getMinutes().toString().padStart(2, "0");
+                    const seconds = dateObject.getSeconds().toString().padStart(2, "0");
+
+                    // Create the formatted date and time string
+                    const formattedDateString = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                    dashboardLecturer += `
+                    <tr>
+                    <td><img class="picture" src="${item['lecturerImage']}" alt=""></td>
+                    <td>${item['staffNo']}</td>
+                    <td>${item['lecturerName']}</td>
+                    <td>${item['lecturerEmail']}</td>
+                    <td>${item['lecturerTelephoneNo']}</td>
+                    <td>${item['faculty']}</td>
+                    <td>${formattedDateString}</td>
+                    </tr>
+                    `;
+                });
+                dashboardLecturer += `
+                     </tbody>
+                  </table>
+                `;
+            }else {
+                dashboardLecturer += `
+                <div class="no-data-dashboard rounded">
+                    <h1 class="dashboard-unavailable"> NO LECTURERS AVAILABLE </h1>
+                </dv>
+            `;
+            }
+            document.getElementById("dashboardlecturer").innerHTML = dashboardLecturer;
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
 }
