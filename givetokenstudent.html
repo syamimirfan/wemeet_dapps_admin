@@ -186,7 +186,7 @@
 
         const success_popup = document.getElementById("success");
         const error_popup = document.getElementById("error");
-        const error2_popup = document.getElementById("error-2");
+        const error2_popup = document.getElementById("error-2"); 
         const s_close = document.getElementById("s_button");
         const e_close = document.getElementById("e_button");
         const e2_close = document.getElementById("e2_button");
@@ -206,7 +206,7 @@
         okayBtn.addEventListener("click", (e) => {
             e.preventDefault();
 
-            let admin = new Admin(localStorage.getItem("password"));
+            let admin = new Admin(sessionStorage.getItem("password"));
             admin.logout();
         });
 

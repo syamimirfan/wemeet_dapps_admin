@@ -25,7 +25,7 @@ class Admin {
             }).then((res) => {
                 if (res['success']) {
                     location.href = "../dashboard.html";
-                    localStorage.setItem("password", this.password);
+                    sessionStorage.setItem("password", this.password);
                 } else {
                     modalWrong.classList.add('active')
                 }
@@ -37,7 +37,7 @@ class Admin {
 
     //admin logout
     logout() {
-        localStorage.removeItem("password");
+        sessionStorage.removeItem("password");
         // push a new state to the browser history
         history.pushState(null, null, location.href);
 

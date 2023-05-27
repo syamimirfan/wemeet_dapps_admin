@@ -271,7 +271,7 @@
         okayBtn.addEventListener("click", (e) => {
             e.preventDefault();
 
-            let admin = new Admin(localStorage.getItem("password"));
+            let admin = new Admin(sessionStorage.getItem("password"));
             admin.logout();
         });
     </script>
