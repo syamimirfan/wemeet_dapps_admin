@@ -69,7 +69,7 @@
                                                     <h6 class="mb-0">Staff Number</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="staffNo" placeholder="01213" id="staffNo" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="staffNo" placeholder="01213" id="staffNo" required/>
                                                 </div>
                                             </div>
 
@@ -79,7 +79,7 @@
                                                     <h6 class="mb-0 ">Full Name</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="lecturerName" placeholder="Full Name" id="lecturerName" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="lecturerName" placeholder="Full Name" id="lecturerName" pattern="[A-Z][A-Za-z\s]+" title="Please enter a name with capital letters" required/>
                                                 </div>
                                             </div>
 
@@ -92,7 +92,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="icNumber" placeholder="IC Number" id="icNumber" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="icNumber" placeholder="IC Number" id="icNumber" pattern=".{12}" title="Please enter 12 characters" required/>
 
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="lecturerTelephoneNo" placeholder="Telephone Number" id="lecturerTelephoneNo" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="lecturerTelephoneNo" placeholder="Telephone Number" id="lecturerTelephoneNo" pattern=".{10}" title="Please enter 10 characters" required/>
 
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="email" class="w-100 my-2 py-2 p-3" name="lecturerEmail" placeholder="example@example.com" id="lecturerEmail" />
+                                                    <input type="email" class="w-100 my-2 py-2 p-3" name="lecturerEmail" placeholder="example@example.com" id="lecturerEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter correct email" required/>
 
                                                 </div>
                                             </div>
@@ -133,7 +133,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input class="form-control" type="file" name="lecturerImage" id="lecturerImage" />
+                                                    <input class="form-control" type="file" name="lecturerImage" id="lecturerImage" required/>
                                                 </div>
                                             </div>
                                             <hr class="mx-n3 ">
@@ -144,7 +144,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <select class="form-select" aria-label="Default select example" name="faculty" id="faculty">
+                                                    <select class="form-select" aria-label="Default select example" name="faculty" id="faculty" required>
                                                     <option value="FSKTM">FSKTM</option>
                                                     <option value="FKEE">FKEE</option>
                                                     <option value="FKMP">FKMP</option>
@@ -170,7 +170,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="department" placeholder="Department" id="department" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="department" placeholder="Department" id="department" required/>
 
                                                 </div>
                                             </div>

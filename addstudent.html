@@ -70,7 +70,7 @@
                                                     <h6 class="mb-0">Matric Number</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="matricNo" placeholder="AI201104" id="matricNo" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="matricNo" placeholder="AI201104" id="matricNo"  required/>
                                                 </div>
                                             </div>
 
@@ -80,7 +80,7 @@
                                                     <h6 class="mb-0 ">Full Name</h6>
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="studName" placeholder="Full Name" id="studName" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="studName" placeholder="Full Name" id="studName" pattern="[A-Z][A-Za-z\s]+" title="Please enter a name with capital letters"  required/>
                                                 </div>
                                             </div>
 
@@ -93,7 +93,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="icNumber" placeholder="IC Number" id="icNumber" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3"  name="icNumber" placeholder="IC Number" id="icNumber" pattern=".{12}" title="Please enter 12 characters" required />
 
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="studTelephoneNo" placeholder="Telephone Number" id="studTelephoneNo" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="studTelephoneNo" placeholder="Telephone Number" id="studTelephoneNo" pattern=".{10}" title="Please enter 10 characters" oninput="validateNumber(event)" required/>
 
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="email" class="w-100 my-2 py-2 p-3" name="studEmail" placeholder="example@example.com" id="studEmail" />
+                                                    <input type="email" class="w-100 my-2 py-2 p-3" name="studEmail" placeholder="example@example.com" id="studEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter correct email" required/>
 
                                                 </div>
                                             </div>
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
 
-                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="program" placeholder="Program" id="program" />
+                                                    <input type="text" class="w-100 my-2 py-2 p-3" name="program" placeholder="Program" id="program" required/>
 
                                                 </div>
                                             </div>
@@ -150,7 +150,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <select class="form-select" aria-label="Default select example" name="faculty" id="faculty">
+                                                    <select class="form-select" aria-label="Default select example" name="faculty" id="faculty" required>
                                                     <option value="FSKTM">FSKTM</option>
                                                     <option value="FKEE">FKEE</option>
                                                     <option value="FKMP">FKMP</option>
@@ -173,7 +173,7 @@
 
                                                 </div>
                                                 <div class="col-md-9 pe-5 ">
-                                                    <input class="form-control" type="file" name="studImage" id="studImage" />
+                                                    <input class="form-control" type="file" name="studImage" id="studImage" required/>
                                                 </div>
                                             </div>
                                             <hr class="mx-n3 ">
@@ -251,6 +251,19 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
     <script src="../scripts/Student.js"></script>
     <script src="../scripts/Utils.js"></script>
+    <script>
+        function validateNumber(event) {
+        const input = event.target;
+        const value = input.value;
+        const numbers = /^\d+$/; // Regular expression to match only numbers
+
+        if (!value.match(numbers)) {
+            input.setCustomValidity("Please enter only numbers");
+        } else {
+            input.setCustomValidity(""); // Clear any validation error
+        }
+    }
+    </script>
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
