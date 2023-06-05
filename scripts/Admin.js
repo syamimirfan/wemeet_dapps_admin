@@ -26,6 +26,11 @@ class Admin {
                 if (res['success']) {
                     location.href = "../dashboard.html";
                     sessionStorage.setItem("password", this.password);
+                    sessionStorage.setItem('logoutFlag', 'false');
+                    var currentTimestamp = new Date().getTime();
+                    var expirationTimestamp = currentTimestamp + (5 * 1000); // 7 days
+                  
+                    sessionStorage.setItem("loginTimestamp", expirationTimestamp);
                 } else {
                     modalWrong.classList.add('active')
                 }
@@ -38,13 +43,9 @@ class Admin {
     //admin logout
     logout() {
         sessionStorage.removeItem("password");
-        // push a new state to the browser history
-        history.pushState(null, null, location.href);
-
-        // add an event listener to the window object to prevent going back to the previous page
-        window.onpopstate = function() {
-            history.go(1);
-        };
+        // Set the logout flag
+        sessionStorage.setItem("logoutFlag", 'true');
+        sessionStorage.removeItem("loginTimestamp");
         location.href = "../index.html";
     }
 
@@ -57,7 +58,7 @@ class Admin {
                 'Content-Type': 'application/json;'
             }
         }).then((res) => {
-            return res.json();
+            return res.json();                                         
         }).then((data) => {
             if (data.success && data.message === "All Slot Delete") {
                 success_popup.style.display = "block";
@@ -77,3 +78,4 @@ class Admin {
         });
     }
 }
+

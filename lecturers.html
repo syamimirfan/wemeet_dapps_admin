@@ -113,6 +113,19 @@
     <script src="../scripts/Lecturer.js"></script>
     <script src="../scripts/Utils.js"></script>
     <script>
+        // Check the logout flag on page load
+        window.addEventListener('load', function() {
+        // Get the logout flag value
+        var logoutFlag = sessionStorage.getItem('logoutFlag');
+
+        // Check if the logout flag is set
+        if (logoutFlag === 'true') {
+
+            // Redirect to the secure landing page
+            window.location.href = "../index.html";
+           }
+        });
+
         //firebase config and integration
         const firebaseConfig = {
             apiKey: "AIzaSyCrPBUIhdneG5WHMGeE9X79SJMbz8vf8ek",

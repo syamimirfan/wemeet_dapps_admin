@@ -124,6 +124,19 @@
     <script src="../scripts/Hash.js"></script>
     <script src="../scripts/Utils.js"></script>
     <script>
+        // Check the logout flag on page load
+        window.addEventListener('load', function() {
+        // Get the logout flag value
+        var logoutFlag = sessionStorage.getItem('logoutFlag');
+
+        // Check if the logout flag is set
+        if (logoutFlag === 'true') {
+
+            // Redirect to the secure landing page
+            window.location.href = "../index.html";
+           }
+        });
+
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
 
