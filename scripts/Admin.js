@@ -28,7 +28,7 @@ class Admin {
                     sessionStorage.setItem("password", this.password);
                     sessionStorage.setItem('logoutFlag', 'false');
                     var currentTimestamp = new Date().getTime();
-                    var expirationTimestamp = currentTimestamp + (5 * 1000); // 7 days
+                    var expirationTimestamp = currentTimestamp + (7 * 24 * 60 * 60 * 1000); // 7 days
                   
                     sessionStorage.setItem("loginTimestamp", expirationTimestamp);
                 } else {

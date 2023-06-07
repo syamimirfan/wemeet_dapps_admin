@@ -280,6 +280,15 @@ hr {
     height: 50%;
 }
 
+#session {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+}
+
 
 .popup-content {
     width: 100%;
@@ -342,6 +351,15 @@ hr {
 }
 
 #e_button:hover {
+    background: #d11818;
+    color: white;
+}
+
+#r_button {
+    background: #ff3636;
+}
+
+#r_button:hover {
     background: #d11818;
     color: white;
 }

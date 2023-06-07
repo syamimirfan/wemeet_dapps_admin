@@ -233,6 +233,20 @@
             </form>
         </div>
     </div>
+    <div class="popup" id="session">
+        <div class="popup-content">
+            <div class="imgbox">
+                <img src="../assets/cancel.png" alt="" class="img">
+            </div>
+            <div class="title">
+                <h3>Session Timeout</h3>
+            </div>
+            <p class="para">Please login to use the system again. Thank you.</p>
+            <form action="">
+                <a href="#" class="button" id="r_button">OKAY</a>
+            </form>
+        </div>
+    </div>
     <!-- /#page-content-wrapper -->
     <section class="popup-confirmation">
 
@@ -251,6 +265,37 @@
     <script src="../scripts/Lecturer.js"></script>
     <script src="../scripts/Utils.js"></script>
     <script>
+
+     function checkSessionExpiry() {
+        var loginTimestamp = sessionStorage.getItem("loginTimestamp");
+
+        if (loginTimestamp) {
+            var currentTimestamp = new Date().getTime();
+            var storedTimestamp = parseInt(loginTimestamp);
+
+            if (currentTimestamp > storedTimestamp) {
+                sessionStorage.removeItem("password");
+                sessionStorage.setItem("logoutFlag", 'true');
+                sessionStorage.removeItem("loginTimestamp");
+
+            session_popup.style.display = "block";
+                r_close.onclick = function() {
+                    session_popup.style.display = "none";
+                    location.href = "../index.html";
+                }
+            }
+        } else {
+            session_popup.style.display = "block";
+                r_close.onclick = function() {
+                    session_popup.style.display = "none";
+                    location.href = "../index.html";
+                }
+        }
+        }
+
+        // Check the session expiry periodically
+        setInterval(checkSessionExpiry, 5000);
+
         // Check the logout flag on page load
         window.addEventListener('load', function() {
         // Get the logout flag value
@@ -314,10 +359,12 @@
 
         const success_popup = document.getElementById("success");
         const error_popup = document.getElementById("error");
+        const session_popup = document.getElementById("session");
         const s_close = document.getElementById("s_button");
         const e_close = document.getElementById("e_button");
         const duplicate_popup = document.getElementById("duplicate");
         const d_close = document.getElementById("d_button");
+        const r_close = document.getElementById("r_button");
 
         e_close.onclick = function() {
             error_popup.style.display = "none";
