@@ -263,6 +263,7 @@
     </section>
 
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+    <script src="../scripts/Connection.js"></script>
     <script src="../scripts/Student.js"></script>
     <script src="../scripts/Utils.js"></script>
     <script>
@@ -348,18 +349,9 @@
         });
     </script>
     <script>
-        //firebase config and integration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCrPBUIhdneG5WHMGeE9X79SJMbz8vf8ek",
-            authDomain: "wemeet-dapps.firebaseapp.com",
-            projectId: "wemeet-dapps",
-            storageBucket: "wemeet-dapps.appspot.com",
-            messagingSenderId: "589312895528",
-            appId: "1:589312895528:web:829e0702e97837533ae31d",
-            measurementId: "G-QGYCXXBYP3"
-        };
-
-        firebase.initializeApp(firebaseConfig);
+        
+        //initialize the firebase
+        firebase.initializeApp(new Connection().FIREBASE_CONFIG);
 
         const addStudent = document.getElementById("addStudent");
         const matricNo = document.getElementById("matricNo");
