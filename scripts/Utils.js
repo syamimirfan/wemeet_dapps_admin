@@ -1,3 +1,3 @@
 class Utils {
-     baseURL = "http://wemeet-dapps-backend:5000";
+     baseURL = "https://wemeet-dapps-backend.onrender.com";
 }

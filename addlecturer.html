@@ -335,9 +335,21 @@
         });
     </script>
     <script>
+        
+         //firebase config and integration
+         const firebaseConfig = {
+            apiKey: "AIzaSyCrPBUIhdneG5WHMGeE9X79SJMbz8vf8ek",
+            authDomain: "wemeet-dapps.firebaseapp.com",
+            projectId: "wemeet-dapps",
+            storageBucket: "wemeet-dapps.appspot.com",
+            messagingSenderId: "589312895528",
+            appId: "1:589312895528:web:829e0702e97837533ae31d",
+            measurementId: "G-QGYCXXBYP3"
+        };
+
 
         //initialize the firebase
-        firebase.initializeApp(new Connection().FIREBASE_CONFIG);
+        firebase.initializeApp(firebaseConfig);
 
         const addLecturer = document.getElementById("addLecturer");
         const staffNo = document.getElementById("staffNo");
