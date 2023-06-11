@@ -1,3 +1,3 @@
 class Utils {
-     baseURL = "http://localhost:5000";
+     baseURL = "http://wemeet-dapps-backend:5000";
 }
