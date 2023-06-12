@@ -295,11 +295,11 @@
             const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
             const abi = JSON.parse(CONTRACT_ABI);
             const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
-            console.log(JSON.parse(CONTRACT_ABI));
+       
 
             giveToken.addEventListener("submit", (e) => {
                 e.preventDefault();
-
+                    console.log(ADMIN_ACCOUNT);
                 let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
                 reward.giveToken();
             });
