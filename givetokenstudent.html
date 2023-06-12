@@ -210,13 +210,7 @@
                     location.href = "../index.html";
                 }
             }
-        } else {
-            session_popup.style.display = "block";
-                r_close.onclick = function() {
-                    session_popup.style.display = "none";
-                    location.href = "../index.html";
-                }
-        }
+        } 
         }
 
         // Check the session expiry periodically
@@ -288,12 +282,11 @@
             return res.json();
         }).then((data) => {
             if(data.success && data.address.length > 0){
-                ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT;
-                TOKEN_ADDRESS = data.address.TOKEN_ADDRESS;
-                PRIVATE_KEY = data.address.PRIVATE_KEY;
-                INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT;
-                CONTRACT_ABI = data.address.CONTRACT_ABI;
-                console.log(ADMIN_ACCOUNT);
+                ADMIN_ACCOUNT = data.address[0]["ADMIN_ACCOUNT"] ;
+                TOKEN_ADDRESS = data.address[0]["TOKEN_ADDRESS"] ;
+                PRIVATE_KEY = data.address[0]["PRIVATE_KEY"] ;
+                INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] ;
+                CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] ;
             }
         })
 
@@ -303,7 +296,7 @@
         const tokenAddress = TOKEN_ADDRESS;
         const privateKey = PRIVATE_KEY;
         const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
-        const abi = CONTRACT_ABI;
+        const abi = JSON.parse(CONTRACT_ABI);
         const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
 
         giveToken.addEventListener("submit", (e) => {
