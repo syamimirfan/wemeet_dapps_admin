@@ -310,30 +310,40 @@
         lecturer.getDashboardLecturer();
 
         let ADMIN_ACCOUNT = "";
-        let TOKEN_ADDRESS = "";
-        let INFURA_SEPOLIA_ENDPOINT = "";
-        let CONTRACT_ABI = "";
+let TOKEN_ADDRESS = "";
+let INFURA_SEPOLIA_ENDPOINT = "";
+let CONTRACT_ABI = "";
 
-        fetch(new Utils().baseURL+ '/admin/getAPI')
-        .then((res) => {
-            return res.json();
-        }).then((data) => {
-            if(data.success && data.address.length > 0){
-                ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT;
-                TOKEN_ADDRESS = data.address.TOKEN_ADDRESS;
-                INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT;
-                CONTRACT_ABI = data.address.CONTRACT_ABI;
-                console.log(ADMIN_ACCOUNT);
-            }
-        })
+fetch(new Utils().baseURL + '/admin/getAPI')
+  .then((res) => {
+    if (!res.ok) {
+      throw new Error('Failed to fetch API data');
+    }
+    return res.json();
+  })
+  .then((data) => {
+    if (data.success && data.address) {
+      ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT || "";
+      TOKEN_ADDRESS = data.address.TOKEN_ADDRESS || "";
+      INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT || "";
+      CONTRACT_ABI = data.address.CONTRACT_ABI || "";
+      console.log(ADMIN_ACCOUNT);
+      // Continue with your code using the fetched data
+      const adminAccount = ADMIN_ACCOUNT;
+      const tokenAddress = TOKEN_ADDRESS;
+      const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
+      const abi = CONTRACT_ABI;
 
-        const adminAccount = ADMIN_ACCOUNT;
-        const tokenAddress = TOKEN_ADDRESS;
-        const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
-        const abi = CONTRACT_ABI;
+      let reward = new Reward();
+      reward.getTotalToken(infuraHTTPURL, tokenAddress, abi, adminAccount);
+    } else {
+      throw new Error('Invalid API response');
+    }
+  })
+  .catch((error) => {
+    console.error('Error fetching API data:', error);
+  });
 
-        let reward = new Reward();
-        reward.getTotalToken(infuraHTTPURL, tokenAddress, abi, adminAccount);
     </script>
     <script src="../scripts/Admin.js"></script>
 </body>
