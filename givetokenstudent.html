@@ -187,7 +187,6 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
     <script src="../scripts/Student.js"></script>
     <script src="../scripts/Attendance.js"></script>
-    <script src="../scripts/Connection.js"></script>
     <script src="../scripts/Reward.js"></script>
     <script src="../scripts/Utils.js"></script>
     <script>
@@ -291,20 +290,19 @@
                 INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] ;
                 CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] ;
       
-        const adminAccount = ADMIN_ACCOUNT;
-        const tokenAddress = TOKEN_ADDRESS;
-        const privateKey = PRIVATE_KEY;
-        const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
-        const abi = JSON.parse(CONTRACT_ABI);
-        const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
+            const adminAccount = ADMIN_ACCOUNT;
+            const tokenAddress = TOKEN_ADDRESS;
+            const privateKey = PRIVATE_KEY;
+            const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
+            const abi = JSON.parse(CONTRACT_ABI);
+            const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
 
-        giveToken.addEventListener("submit", (e) => {
-            e.preventDefault();
-            console.log(adminAccount);
-            console.log(abi);
-            let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
-            reward.giveToken();
-        })
+            giveToken.addEventListener("submit", (e) => {
+                e.preventDefault();
+                console.log(matricNo);
+                let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
+                reward.giveToken();
+            })
             }
         })
     </script>
