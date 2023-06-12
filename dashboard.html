@@ -310,9 +310,9 @@
         lecturer.getDashboardLecturer();
 
         let ADMIN_ACCOUNT = "";
-let TOKEN_ADDRESS = "";
-let INFURA_SEPOLIA_ENDPOINT = "";
-let CONTRACT_ABI = "";
+        let TOKEN_ADDRESS = "";
+        let INFURA_SEPOLIA_ENDPOINT = "";
+        let CONTRACT_ABI = "";
 
 fetch(new Utils().baseURL + '/admin/getAPI')
   .then((res) => {
@@ -323,10 +323,10 @@ fetch(new Utils().baseURL + '/admin/getAPI')
   })
   .then((data) => {
     if (data.success && data.address) {
-      ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT || "";
-      TOKEN_ADDRESS = data.address.TOKEN_ADDRESS || "";
-      INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT || "";
-      CONTRACT_ABI = data.address.CONTRACT_ABI || "";
+      ADMIN_ACCOUNT = data.address[0]["ADMIN_ACCOUNT"] || "";
+      TOKEN_ADDRESS = data.address[0]["TOKEN_ADDRESS"] || "";
+      INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] || "";
+      CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] || "";
       console.log(ADMIN_ACCOUNT);
       // Continue with your code using the fetched data
       const adminAccount = ADMIN_ACCOUNT;
