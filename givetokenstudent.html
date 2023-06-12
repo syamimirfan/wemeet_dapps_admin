@@ -290,12 +290,7 @@
                 PRIVATE_KEY = data.address[0]["PRIVATE_KEY"] ;
                 INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] ;
                 CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] ;
- 
-            }
-        })
-
-        //global variable for web3 
-        //get .env params
+      
         const adminAccount = ADMIN_ACCOUNT;
         const tokenAddress = TOKEN_ADDRESS;
         const privateKey = PRIVATE_KEY;
@@ -309,6 +304,8 @@
             console.log(abi);
             let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
             reward.giveToken();
+        })
+            }
         })
     </script>
     <script src="../scripts/Admin.js"></script>
