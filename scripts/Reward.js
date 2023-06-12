@@ -61,7 +61,8 @@ class Reward {
                 }
             } else {
                 console.log('transaction submitted ', hash);
-                new Reward().transactionHash(hash);
+                console.log("FUCK ME");
+                // new Reward().transactionHash(hash);
             }
         })
     }
