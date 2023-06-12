@@ -276,14 +276,34 @@
         const attendanceId = urlParams.get('attendanceId');
         document.getElementById("studentMetamaskAddress").value = studTokenAddress;
         document.getElementById("successfulTokenSend").innerHTML = matricNo;
+        
+        const ADMIN_ACCOUNT = "";
+        const TOKEN_ADDRESS = "";
+        const PRIVATE_KEY = "";
+        const INFURA_SEPOLIA_ENDPOINT = "";
+        const CONTRACT_ABI = "";
+
+        fetch(new Utils().baseURL+ '/getAPI')
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            if(data.success && data.address.length > 0){
+                ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT;
+                TOKEN_ADDRESS = data.address.TOKEN_ADDRESS;
+                PRIVATE_KEY = data.address.PRIVATE_KEY;
+                INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT;
+                CONTRACT_ABI = data.address.CONTRACT_ABI;
+                console.log(ADMIN_ACCOUNT);
+            }
+        })
 
         //global variable for web3 
         //get .env params
-        const adminAccount = new Connection().ADMIN_ACCOUNT;
-        const tokenAddress = new Connection().TOKEN_ADDRESS;
-        const privateKey = new Connection().PRIVATE_KEY;
-        const infuraHTTPURL = new Connection().INFURA_SEPOLIA_ENDPOINT;
-        const abi = new Connection().CONTRACT_ABI;
+        const adminAccount = ADMIN_ACCOUNT;
+        const tokenAddress = TOKEN_ADDRESS;
+        const privateKey = PRIVATE_KEY;
+        const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
+        const abi = CONTRACT_ABI;
         const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
 
         giveToken.addEventListener("submit", (e) => {

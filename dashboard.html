@@ -293,7 +293,7 @@
         });
 
         // Add a history entry to prevent the user from going back
-history.pushState(null, null, location.href);
+        history.pushState(null, null, location.href);
 
         deleteSlot.addEventListener("click", (e) => {
             e.preventDefault();
@@ -307,12 +307,30 @@ history.pushState(null, null, location.href);
 
         let lecturer = new Lecturer();
         lecturer.getTotalLecturer();
-        lecturer.getDashboardLecturer()
+        lecturer.getDashboardLecturer();
 
-        const adminAccount = new Connection().ADMIN_ACCOUNT;
-        const tokenAddress = new Connection().TOKEN_ADDRESS;
-        const infuraHTTPURL = new Connection().INFURA_SEPOLIA_ENDPOINT;
-        const abi = new Connection().CONTRACT_ABI;
+        const ADMIN_ACCOUNT = "";
+        const TOKEN_ADDRESS = "";
+        const INFURA_SEPOLIA_ENDPOINT = "";
+        const CONTRACT_ABI = "";
+
+        fetch(new Utils().baseURL+ '/getAPI')
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            if(data.success && data.address.length > 0){
+                ADMIN_ACCOUNT = data.address.ADMIN_ACCOUNT;
+                TOKEN_ADDRESS = data.address.TOKEN_ADDRESS;
+                INFURA_SEPOLIA_ENDPOINT = data.address.INFURA_SEPOLIA_ENDPOINT;
+                CONTRACT_ABI = data.address.CONTRACT_ABI;
+                console.log(ADMIN_ACCOUNT);
+            }
+        })
+
+        const adminAccount = ADMIN_ACCOUNT;
+        const tokenAddress = TOKEN_ADDRESS;
+        const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
+        const abi = CONTRACT_ABI;
 
         let reward = new Reward();
         reward.getTotalToken(infuraHTTPURL, tokenAddress, abi, adminAccount);
