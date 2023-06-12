@@ -296,7 +296,7 @@
         const tokenAddress = TOKEN_ADDRESS;
         const privateKey = PRIVATE_KEY;
         const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
-        const abi = CONTRACT_ABI && typeof CONTRACT_ABI === 'string' ? JSON.parse(CONTRACT_ABI) : null;
+        const abi = CONTRACT_ABI;
         const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
 
         giveToken.addEventListener("submit", (e) => {
