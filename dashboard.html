@@ -321,10 +321,6 @@ fetch(new Utils().baseURL + '/admin/getAPI')
       TOKEN_ADDRESS = data.address[0]["TOKEN_ADDRESS"] ;
       INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] ;
       CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] ;
-      console.log(ADMIN_ACCOUNT);
-      console.log(TOKEN_ADDRESS);
-      console.log(INFURA_SEPOLIA_ENDPOINT);
-      console.log(CONTRACT_ABI);
       // Continue with your code using the fetched data
       const adminAccount = ADMIN_ACCOUNT;
       const tokenAddress = TOKEN_ADDRESS;
