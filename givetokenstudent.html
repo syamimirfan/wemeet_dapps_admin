@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/givetokenstudent.css" />
     <link rel="icon" href="../assets/wemeet-logo(icon).png">
-    <title>WEMEET | ADD LECTURERS</title>
+    <title>WEMEET | REWARD</title>
 </head>
 
 <body>
@@ -277,39 +277,34 @@
         let INFURA_SEPOLIA_ENDPOINT = "";
         let CONTRACT_ABI = "";
 
-        fetch(new Utils().baseURL+ '/admin/getAPI')
+        fetch(new Utils().baseURL + '/admin/getAPI')
         .then((res) => {
             return res.json();
         }).then((data) => {
-            if(data.success && data.address.length > 0){
-                ADMIN_ACCOUNT = data.address[0]["ADMIN_ACCOUNT"] ;
-                TOKEN_ADDRESS = data.address[0]["TOKEN_ADDRESS"] ;
-                PRIVATE_KEY = data.address[0]["PRIVATE_KEY"] ;
-                INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"] ;
-                CONTRACT_ABI = data.address[0]["CONTRACT_ABI"] ;
-                console.log(ADMIN_ACCOUNT);
-                console.log(TOKEN_ADDRESS);
-                console.log(PRIVATE_KEY);
-                console.log(INFURA_SEPOLIA_ENDPOINT);
-                console.log(CONTRACT_ABI);
+            if (data.success && data.address.length > 0) {
+            ADMIN_ACCOUNT = data.address[0]["ADMIN_ACCOUNT"];
+            TOKEN_ADDRESS = data.address[0]["TOKEN_ADDRESS"];
+            PRIVATE_KEY = data.address[0]["PRIVATE_KEY"];
+            INFURA_SEPOLIA_ENDPOINT = data.address[0]["INFURA_SEPOLIA_ENDPOINT"];
+            CONTRACT_ABI = data.address[0]["CONTRACT_ABI"];
+
+            // Continue with the dependent code
+            const adminAccount = ADMIN_ACCOUNT;
+            const tokenAddress = TOKEN_ADDRESS;
+            const privateKey = PRIVATE_KEY;
+            const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
+            const abi = CONTRACT_ABI;
+            const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
+
+            giveToken.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
+                reward.giveToken();
+            });
             }
-        })
+        });
 
-        //global variable for web3 
-        //get .env params
-        const adminAccount = ADMIN_ACCOUNT;
-        const tokenAddress = TOKEN_ADDRESS;
-        const privateKey = PRIVATE_KEY;
-        const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
-        const abi = CONTRACT_ABI;
-        const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
-
-        giveToken.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let reward = new Reward(adminAccount, tokenAddress, privateKey, infuraHTTPURL, abi, studentMetamaskAddress, 1, matricNo, attendanceId);
-            reward.giveToken();
-        })
     </script>
     <script src="../scripts/Admin.js"></script>
 
