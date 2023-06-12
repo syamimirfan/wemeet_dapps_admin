@@ -309,10 +309,10 @@
         lecturer.getTotalLecturer();
         lecturer.getDashboardLecturer();
 
-        const ADMIN_ACCOUNT = "";
-        const TOKEN_ADDRESS = "";
-        const INFURA_SEPOLIA_ENDPOINT = "";
-        const CONTRACT_ABI = "";
+        let ADMIN_ACCOUNT = "";
+        let TOKEN_ADDRESS = "";
+        let INFURA_SEPOLIA_ENDPOINT = "";
+        let CONTRACT_ABI = "";
 
         fetch(new Utils().baseURL+ '/admin/getAPI')
         .then((res) => {
