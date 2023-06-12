@@ -295,6 +295,7 @@
             const infuraHTTPURL = INFURA_SEPOLIA_ENDPOINT;
             const abi = JSON.parse(CONTRACT_ABI);
             const studentMetamaskAddress = document.getElementById("studentMetamaskAddress").value;
+            console.log(JSON.parse(CONTRACT_ABI));
 
             giveToken.addEventListener("submit", (e) => {
                 e.preventDefault();
