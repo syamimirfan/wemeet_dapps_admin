@@ -28,7 +28,7 @@ class Hash {
                     <td>${item['matricNo']}</td>
                     <td>${item['studName']}</td>
                     <td>${item['studTelephoneNo']}</td>
-                    <td><a href="https://sepolia.etherscan.io/tx/${item['trackingHash']} target="_blank">${item['trackingHash']}</a></td>
+                    <td><a href="https://sepolia.etherscan.io/tx/${item['trackingHash']}" target="_blank">${item['trackingHash']}</a></td>
                     <td>
                     <button class="fs-2 p-2 give-done" onclick="document.getElementById('id${item['matricNo']}').style.display='block'"> 
                     <i class="fas fa-trash"></i>
