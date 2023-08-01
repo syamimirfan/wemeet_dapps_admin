@@ -280,13 +280,16 @@
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
-    transform: translate(100%, 150%) scale(1.2);
+    position: fixed; /* Position the modal relative to the viewport */
+    top: 50%; /* Center the modal vertically */
+    left: 50%; /* Center the modal horizontally */
+    transform: translate(-50%, -50%) scale(1.2); /* Center the modal precisely and scale it */
 }
 
 .popup-confirmation.active .modal-box {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(200%, -360%) scale(1);
+    transform: translate(-50%, -50%) scale(1); /* Center the modal precisely */
 }
 
 .modal-box h2 {
